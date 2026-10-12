@@ -1,0 +1,81 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+
+using namespace std;
+
+// --- Function Prototypes ---
+double cmToMeters(double cm);
+double calculateBMI(double weightKg, double heightM);
+string classifyBMI(double bmi);
+
+int main() {
+    int numPatients;
+
+    cout << "How many patients do you want to process today? ";
+    if (!(cin >> numPatients) || numPatients <= 0) {
+        cout << "Invalid number of patients. program ended." << endl;
+        return 1;
+    }
+
+    // Loop through each patient
+    for (int i = 1; i <= numPatients; ++i) {
+        string name;
+        double weight;
+        double height;
+
+        cout << "\nEnter the patient's name (#" << i << "): ";
+        cin.ignore(); // Clear the buffer newline
+        getline(cin, name);
+
+        cout << "Enter weight in kilograms: ";
+        if (!(cin >> weight) || weight <= 0) {
+            cout << "Invalid weight input. Weight must be greater than 0. program ended." << endl;
+            return 1;
+        }
+
+        cout << "Enter height in centimeters: ";
+        if (!(cin >> height) || height <= 0) {
+            cout << "Invalid height input. Height must be greater than 0. program ended" << endl;
+            return 1;
+        }
+
+        // Calculations
+        double heightInMeters = cmToMeters(height);
+        double bmi = calculateBMI(weight, heightInMeters);
+        string classification = classifyBMI(bmi);
+
+        // Output formatting
+        cout << fixed << setprecision(2);
+        cout << name << "'s BMI is: " << bmi << endl;
+        cout << "The BMI classification is " << classification << endl;
+    }
+
+    cout << "\nThank you for using our system." << endl;
+    return 0;
+}
+
+// --- Function Definitions ---
+
+// Converts centimeters to meters
+double cmToMeters(double cm) {
+    return cm / 100.0;
+}
+
+// Calculates BMI 
+double calculateBMI(double weightKg, double heightM) {
+    return weightKg / (heightM * heightM);
+}
+
+// if else BMI
+string classifyBMI(double bmi) {
+    if (bmi < 18.5) {
+        return "Underweight";
+    } else if (bmi >= 18.5 && bmi <= 24.9) {
+        return "Normal weight";
+    } else if (bmi >= 25.0 && bmi <= 29.9) {
+        return "Overweight";
+    } else {
+        return "Obese";
+    }
+}
