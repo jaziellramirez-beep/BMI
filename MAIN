@@ -43,12 +43,12 @@ int main() {
         // Calculations
         double heightInMeters = cmToMeters(height);
         double bmi = calculateBMI(weight, heightInMeters);
-        string classification = classifyBMI(bmi);
+        
 
         // Output formatting
         cout << fixed << setprecision(2);
         cout << name << "'s BMI is: " << bmi << endl;
-        cout << "The BMI classification is " << classification << endl;
+        cout << "The BMI classification is " <<classifyBMI(bmi)  << endl;
     }
 
     cout << "\nThank you for using our system." << endl;
