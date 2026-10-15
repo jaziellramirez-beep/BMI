@@ -4,38 +4,31 @@ PROGRAM 1
 test       input       output
 1          RUN         INVALID/forgot the prototype
 2          RUN         invalid/ mispelled the prototype
-3          RUN         invalid
-4          RUN
-5          RUN
-6          RUN
-7          RUN      
-8          RUN
-9          RUN
-10        RUN
-11        RUN            valid
-12        RUN            valid
-13        RUN            valid
-14        RUN            valid
-15        RUN            valid
+3          RUN         invalid/forgot ;
+4          RUN          invalid/needed cin.ignore
+8          RUN            invalid/needed the sentinel or !
+5          RUN            invalid/ forgot ||
+6          RUN           invalid forgot another ||
+7          RUN            invalid/return 1
+9          RUN            invalid/ misspelled for cm to m in parameter
+10        RUN              invalid/ the calculation was wrong
+11        RUN            valid/ ran 3
+12        RUN            valid/ tried puting negative
+13        RUN            valid/ bmi classification good
+14        RUN            valid/ -1 patients invalid
+15        RUN            valid/ done
 
 PROGRAM 2
-21        RUN
-22        RUN
-23        RUN
-24        RUN
-25        RUN
-26        RUN
-27        RUN
-28        RUN
-29        RUN
-30        RUN
-31        RUN
-32
-33
-34
-35
-36
-37
-38
-39
-40
+21        RUN       invalid/ the file wont open      
+22        RUN       invalide/ forgot to make file connected       
+23        RUN       INVALID/put the list in the thing next to the code?       
+24        RUN        invalid/ weight was missing ;  (fixed the same with height  
+25        RUN          invalid/calculations paramter misspelled
+26        RUN        invalid/ parameter was not added    
+27        RUN         invalid/ im making a = to new variable
+28        RUN          invalid/forgot to close file
+29        RUN            valid/works
+30        RUN            valid/ bmi looks good
+31        RUN            valid
+32        RUN            valid
+    
