@@ -1,1 +1,83 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iomanip>
+
+using namespace std;
+
+// Function to calculate BMI
+double calculateBMI(double weight_kg, double height_cm) {
+    double height_m = height_cm / 100.0;
+    return weight_kg / (height_m * height_m);
+}
+
+// Function to get the BMI categorization string
+string getBMIClassification(double bmi) {
+    if (bmi < 18.5) return "Underweight";
+    if (bmi < 25.0) return "Normal";
+    if (bmi < 30.0) return "Overweight";
+    return "Obese";
+}
+
+int main() {
+    string filename = "patients.txt"
+    ifstream inputFile(filename);
+
+    if (!inputFile.is_open()) {
+        cout << "ERROR: The file '" << filename << "' could not be opened." << endl;
+        return 1;
+    }
+
+    int expectedPatients = 0;
+    if (!(inputFile >> expectedPatients)) {
+        cout << "ERROR: Invalid or empty file layout (missing patient count)." << endl;
+        cout << "Program ended." << endl;
+        return 1;
+    }
+
+    // looking at each patient things/data
+    for (int i = 1; i <= expectedPatients; ++i) {
+        string firstName, lastName;
+        double weight = 0.0;
+        double height = 0.0;
+
+        // Try reading the 4 expected space-separated pieces of data
+        if (!(inputFile >> firstName >> lastName >> weight >> height)) {
+            // Check if we hit EOF prematurely or hit malformed text blocks (e.g. Lab #5 descriptions)
+            if (inputFile.eof()) {
+                cout << "ERROR: Expected " << expectedPatients << " patients, but file ended early." << endl;
+            } else {
+                cout << "(#" << i << ") ERROR: Invalid data format or mismatched text types." << endl;
+            }
+            cout << "Program ended." << endl;
+            return 1;
+        }
+
+        // check if data is above 0
+        if (weight <= 0) {
+            cout << "(#" << i << ") ERROR: The value " << weight << " is invalid for weight in kilograms." << endl;
+            cout << "Program ended." << endl;
+            return 1;
+        }
+        if (height <= 0) {
+            cout << "(#" << i << ") ERROR: The value " << height << " is invalid for height in centimeters." << endl;
+            cout << "Program ended." << endl;
+            return 1;
+        }
+
+        // Calculations & Formatted Output
+        double bmi = calculateBMI(weight, height);
+        string classification = getBMIClassification(bmi);
+
+        cout << "(#" << i << ") " << firstName << " " << lastName << "’s BMI is: " 
+             << fixed << setprecision(2) << bmi << endl;
+        cout << "The BMI classification is " << classification << endl;
+    }
+
+    cout << "Thank you for using our system." << endl;
+    inputFile.close();
+    return 0;
+}
+
 
