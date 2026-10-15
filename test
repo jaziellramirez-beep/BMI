@@ -4,7 +4,7 @@ PROGRAM 1
 test       input       output
 1          RUN         INVALID/forgot the prototype
 2          RUN         invalid/ mispelled the prototype
-3          RUN
+3          RUN         invalid
 4          RUN
 5          RUN
 6          RUN
