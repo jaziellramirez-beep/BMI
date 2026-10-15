@@ -50,6 +50,8 @@ int main() {
             cout << "Program ended." << endl;
             return 1;
         }
+        double cmToMeters(double cm);
+        
         if (height <= 0) {
             cout << "(#" << i << ") ERROR: The value " << height << " is invalid for height in centimeters." << endl;
             cout << "Program ended." << endl;
@@ -57,7 +59,8 @@ int main() {
         }
 
         // Calculations 
-        double bmi = calculateBMI(weight, height);
+     double heighttometer = cmToMeters(height);
+     double bmi = calculateBMI(weight, heighttometer);
         
 
         cout << "(#" << i << ") " << firstName << " " << lastName << "’s BMI is: " 
