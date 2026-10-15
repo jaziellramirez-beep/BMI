@@ -5,23 +5,13 @@
 #include <iomanip>
 
 using namespace std;
-
-// Function to calculate BMI
-double calculateBMI(double weight_kg, double height_cm) {
-    double height_m = height_cm / 100.0;
-    return weight_kg / (height_m * height_m);
-}
-
-// Function to get the BMI categorization string
-string getBMIClassification(double bmi) {
-    if (bmi < 18.5) return "Underweight";
-    if (bmi < 25.0) return "Normal";
-    if (bmi < 30.0) return "Overweight";
-    return "Obese";
-}
+// --- Function Prototypes ---
+double cmToMeters(double cm);
+double calculateBMI(double weightKg, double heightM);
+string classifyBMI(double bmi);
 
 int main() {
-    string filename = "patients.txt"
+    string filename = "patients.txt";
     ifstream inputFile(filename);
 
     if (!inputFile.is_open()) {
@@ -36,15 +26,15 @@ int main() {
         return 1;
     }
 
-    // looking at each patient things/data
+    // main loop for getting all patients
     for (int i = 1; i <= expectedPatients; ++i) {
-        string firstName, lastName;
+        string firstName;
+        string lastName;
         double weight = 0.0;
         double height = 0.0;
 
-        // Try reading the 4 expected space-separated pieces of data
+        // filters for incorrect set up
         if (!(inputFile >> firstName >> lastName >> weight >> height)) {
-            // Check if we hit EOF prematurely or hit malformed text blocks (e.g. Lab #5 descriptions)
             if (inputFile.eof()) {
                 cout << "ERROR: Expected " << expectedPatients << " patients, but file ended early." << endl;
             } else {
@@ -54,7 +44,7 @@ int main() {
             return 1;
         }
 
-        // check if data is above 0
+        // checks to see if the weight and hieght is good(no negative or 0)
         if (weight <= 0) {
             cout << "(#" << i << ") ERROR: The value " << weight << " is invalid for weight in kilograms." << endl;
             cout << "Program ended." << endl;
@@ -66,13 +56,13 @@ int main() {
             return 1;
         }
 
-        // Calculations & Formatted Output
+        // Calculations 
         double bmi = calculateBMI(weight, height);
-        string classification = getBMIClassification(bmi);
+        
 
         cout << "(#" << i << ") " << firstName << " " << lastName << "’s BMI is: " 
              << fixed << setprecision(2) << bmi << endl;
-        cout << "The BMI classification is " << classification << endl;
+        cout << "The BMI classification is " << classifyBMI( bmi) << endl;
     }
 
     cout << "Thank you for using our system." << endl;
@@ -81,3 +71,26 @@ int main() {
 }
 
 
+
+// Converts centimeters to meters
+double cmToMeters(double cm) {
+    return cm / 100.0;
+}
+
+// Calculates BMI 
+double calculateBMI(double weightKg, double heightM) {
+    return weightKg / (heightM * heightM);
+}
+
+// if else BMI
+string classifyBMI(double bmi) {
+    if (bmi < 18.5) {
+        return "Underweight";
+    } else if (bmi >= 18.5 && bmi <= 24.9) {
+        return "Normal weight";
+    } else if (bmi >= 25.0 && bmi <= 29.9) {
+        return "Overweight";
+    } else {
+        return "Obese";
+    }
+}
