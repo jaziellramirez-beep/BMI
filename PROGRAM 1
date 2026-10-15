@@ -12,7 +12,7 @@ string classifyBMI(double bmi);
 int main() {
     int numPatients;
 
-    cout << "How many patients do you want to process today? ";
+    cout << "How many patients do you want to process today? "<<endl;
     if (!(cin >> numPatients) || numPatients <= 0) {
         cout << "Invalid number of patients. program ended." << endl;
         return 1;
@@ -24,8 +24,8 @@ int main() {
         double weight;
         double height;
 
-        cout << "\nEnter the patient's name (#" << i << "): ";
-        cin.ignore(); // Clear the buffer newline
+        cout << "Enter the patient's name (#" << i << "): ";
+        cin.ignore(); 
         getline(cin, name);
 
         cout << "Enter weight in kilograms: ";
