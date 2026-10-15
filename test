@@ -1,3 +1,41 @@
 personal notte return 1 = end program
 
+PROGRAM 1
 test       input       output
+1          RUN         INVALID/forgot the prototype
+2          RUN         invalid/ mispelled the prototype
+3          RUN
+4          RUN
+5          RUN
+6          RUN
+7          RUN      
+8          RUN
+9          RUN
+10        RUN
+11        RUN            valid
+12        RUN            valid
+13        RUN            valid
+14        RUN            valid
+15        RUN            valid
+
+PROGRAM 2
+21        RUN
+22        RUN
+23        RUN
+24        RUN
+25        RUN
+26        RUN
+27        RUN
+28        RUN
+29        RUN
+30        RUN
+31        RUN
+32
+33
+34
+35
+36
+37
+38
+39
+40
